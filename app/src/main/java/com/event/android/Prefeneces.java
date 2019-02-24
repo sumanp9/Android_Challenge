@@ -21,6 +21,8 @@ public class Prefeneces {
         return true;
     }
 
+
+
     public  static String getUsername(Context context){
         SharedPreferences prefs =  PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getString(Constants.PREF_USERNAME,null);

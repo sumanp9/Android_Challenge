@@ -38,9 +38,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkUser() {
-        if (Prefeneces.getUsername(this)!=null || !Prefeneces.getUsername(this).equals("")){
+        if (/*Prefeneces.getUsername(this)!=null ||*/ !Prefeneces.getUsername(this).equals("")){
             Intent intent =  new Intent(LoginActivity.this, EventActivity.class);
             startActivity(intent);
+            finish();
 
         }
     }

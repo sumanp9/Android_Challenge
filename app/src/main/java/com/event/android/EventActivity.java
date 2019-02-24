@@ -1,5 +1,6 @@
 package com.event.android;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,5 +49,9 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void logout_User() {
+        Prefeneces.saveUserData("","","",this);
+        Intent intent =  new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
