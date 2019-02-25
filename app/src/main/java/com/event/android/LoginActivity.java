@@ -21,7 +21,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText txtUsername, txtPassword;
     private Button btnLogin;
-    private static String token;
+    private  String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,17 +122,5 @@ public class LoginActivity extends AppCompatActivity {
             return false;
     }
 
-    public  void  saveUserInfo(){
-        SharedPreferences sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor =  sharedPref.edit();
-        editor.putString("Username",txtUsername.getText().toString());
-        editor.putString("Password", txtPassword.getText().toString());
-        editor.putString("Token",token);
-
-        editor.apply();
-
-        Toast.makeText(this, "Info Saved", Toast.LENGTH_SHORT).show();
-
-    }
 
 }

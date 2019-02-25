@@ -12,6 +12,6 @@ public interface UserClient {
     @POST("v1/login/")
     Call<User> createAccount(@Body User user);
 
-    @GET("secretInfo")
+    @GET("v1/events/")
     Call<ResponseBody> getSecret(@Header("Authorization") String authToken);
 }
