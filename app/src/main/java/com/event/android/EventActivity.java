@@ -1,7 +1,6 @@
 package com.event.android;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,14 +11,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,7 +26,7 @@ public class EventActivity extends AppCompatActivity {
     private EditText editText2;
     private Toolbar toolbar;
 
-    private static String token="";
+    private String token="";
 
     Retrofit.Builder builder = new Retrofit.Builder()
             .baseUrl("https://challenge.myriadapps.com/api/")

@@ -39,7 +39,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private void checkUser() {
         if (/*Prefeneces.getUsername(this)!=null ||*/ !Prefeneces.getUsername(this).equals("")){
+            String username = Prefeneces.getUsername(this);
+            String pass = Prefeneces.getPassword(this);
+            String token= Prefeneces.getStoreToken(this);
             Intent intent =  new Intent(LoginActivity.this, EventActivity.class);
+            intent.putExtra("Username",username);
+            intent.putExtra("Password",pass);
+            intent.putExtra("StoredToken",token);
             startActivity(intent);
             finish();
 
