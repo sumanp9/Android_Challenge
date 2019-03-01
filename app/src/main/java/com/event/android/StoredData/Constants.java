@@ -1,4 +1,4 @@
-package com.event.android;
+package com.event.android.StoredData;
 
 public class Constants {
 

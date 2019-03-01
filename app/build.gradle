@@ -27,12 +27,13 @@ dependencies {
 
 
 
-    //implementing retrofit and gson
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-
-    //implementing picasso library
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //implementing butter knife
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
 
     testImplementation 'junit:junit:4.12'

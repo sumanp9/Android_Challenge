@@ -1,7 +1,8 @@
-package com.event.android;
+package com.event.android.userClass;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 
 public class Event {
 
@@ -14,6 +15,9 @@ public class Event {
     @SerializedName("image_url")
     @Expose
     private String imageUrl;
+    @SerializedName("event_description")
+    @Expose
+    private String eventDescription;
     @SerializedName("start_date_time")
     @Expose
     private String startDateTime;
@@ -26,6 +30,9 @@ public class Event {
     @SerializedName("featured")
     @Expose
     private Boolean featured;
+    @SerializedName("speakers")
+    @Expose
+    private ArrayList<Speaker> speakers =  new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -49,6 +56,14 @@ public class Event {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getEventDescription() {
+        return eventDescription;
+    }
+
+    public void setEventDescription(String eventDescription) {
+        this.eventDescription = eventDescription;
     }
 
     public String getStartDateTime() {
@@ -81,6 +96,14 @@ public class Event {
 
     public void setFeatured(Boolean featured) {
         this.featured = featured;
+    }
+
+    public ArrayList<Speaker> getSpeakers() {
+        return speakers;
+    }
+
+    public void setSpeakers(ArrayList<Speaker> speakers) {
+        this.speakers = speakers;
     }
 
 }

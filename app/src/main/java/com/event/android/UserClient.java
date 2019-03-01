@@ -1,8 +1,10 @@
 package com.event.android;
 
+import com.event.android.userClass.Event;
+import com.event.android.userClass.User;
+
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

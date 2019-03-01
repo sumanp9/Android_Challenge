@@ -1,11 +1,8 @@
-package com.event.android;
+package com.event.android.StoredData;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.widget.Toast;
-
-import retrofit2.Callback;
 
 public class Prefeneces {
 
