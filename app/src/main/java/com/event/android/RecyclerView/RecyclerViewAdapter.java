@@ -58,7 +58,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .load(mImages.get(i))
                 .into(viewHolder.imageView);
         viewHolder.title.setText(title.get(i));
-        viewHolder.time.setText(title.get(i));
+        viewHolder.time.setText(date.get(i));
 
         eventClicked(viewHolder,i);
 
