@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:overScrollMode="ifContentScrolls"
+    android:scrollbarStyle="insideOverlay"
+    android:scrollbars="vertical"
+    tools:context=".UI.ShowEventActivity"
+    >
+
+    <include
+
+        android:id="@+id/event_toolbar"
+        layout="@layout/toolbar"
+        android:textColor="@color/white"></include>
+
+    <ImageView
+        android:id="@+id/eventImage"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/event_toolbar"
+        android:contentDescription="TODO" />
+
+    <TextView
+        android:id="@+id/eventTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eventImage"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:text="Event Title"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/eventDateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eventTitle"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Date and Time"
+        android:textColor="@color/silver"
+        android:textSize="16sp" />
+    <TextView
+        android:id="@+id/eventDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eventDateTime"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:text="Event Details"
+        android:textSize="16dp"/>
+
+    <ImageView
+        android:id="@+id/location_icon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_below="@id/eventDetail"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/ic_loation"/>
+
+    <TextView
+        android:id="@+id/location_details"
+        android:layout_width="231dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/eventDetail"
+        android:layout_marginStart="7dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="-254dp"
+        android:layout_toLeftOf="@+id/location_icon"
+        android:layout_toEndOf="@+id/location_icon"
+        android:layout_toRightOf="@+id/location_icon"
+        android:text="location details"
+        android:textColor="@color/EventDarkBlue"
+        android:textSize="16sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/location_details"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/speakerRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/location_details"
+        android:layout_marginTop="40dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
+</RelativeLayout>

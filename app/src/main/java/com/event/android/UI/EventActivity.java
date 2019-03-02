@@ -1,4 +1,4 @@
-package com.event.android;
+package com.event.android.UI;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -14,20 +14,18 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.event.android.R;
+import com.event.android.RecyclerView.RecyclerViewAdapter;
 import com.event.android.Service.APIService;
 import com.event.android.StoredData.Prefeneces;
 import com.event.android.userClass.Event;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class EventActivity extends AppCompatActivity {
@@ -74,7 +72,7 @@ public class EventActivity extends AppCompatActivity {
                     }
                     Toast.makeText(EventActivity.this, "Events recieved", Toast.LENGTH_SHORT).show();
 
-                    initRecyclerView(id, imageTitle,imageUrls,imageDate);
+                    initRecyclerView(id, imageTitle,imageUrls,imageDate, token);
                     //editText.setText(ofEvents);
                 }
                 catch (Exception e){
@@ -89,49 +87,13 @@ public class EventActivity extends AppCompatActivity {
 
             }
         },token);
-
-        /*
-        Call<List<Event>> call =  eventInterface.getSecret(token);
-        call.enqueue(new Callback<List<Event>>() {
-            @Override
-            public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
-                String ofEvents = "";
-                try{
-                    List<Event> events =  response.body();
-                    for (int i = 0; i< events.size();i++){
-                        Event e =  response.body().get(i);
-                        id.add(e.getId().toString());
-                        imageTitle.add(e.getTitle());
-                        imageUrls.add(e.getImageUrl());
-                        imageDate.add(e.getStartDateTime());
-                    }
-                    Toast.makeText(EventActivity.this, "Events recieved", Toast.LENGTH_SHORT).show();
-
-                    initRecyclerView(id, imageTitle,imageUrls,imageDate);
-                    //editText.setText(ofEvents);
-                }
-                catch (Exception e){
-                    Log.d("onResponse", "there is an error");
-                    e.printStackTrace();
-                }
-            }
-
-             @Override
-             public void onFailure(Call<List<Event>> call, Throwable t) {
-                 Log.d("onFailure",t.toString());
-
-             }
-         });
-*/
-
-
     }
 
-    private void initRecyclerView(ArrayList<String> id, ArrayList<String> imageTitle, ArrayList<String> imageUrls, ArrayList<String> imageDate) {
+    private void initRecyclerView(ArrayList<String> id, ArrayList<String> imageTitle, ArrayList<String> imageUrls, ArrayList<String> imageDate, String token) {
         RecyclerView recyclerView =  findViewById(R.id.recyclerView);
         recyclerView.addItemDecoration(new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL));
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,id,imageUrls,imageTitle,imageDate);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,id,imageUrls,imageTitle,imageDate, token);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
