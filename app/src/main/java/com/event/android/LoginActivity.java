@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.event.android.Service.APIService;
 import com.event.android.StoredData.Prefeneces;
 import com.event.android.userClass.User;
 
@@ -71,18 +72,21 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void postUser(User user, final String username, final String pass) {
-        Retrofit.Builder builder =  new Retrofit.Builder()
+       /* Retrofit.Builder builder =  new Retrofit.Builder()
                 .baseUrl("https://challenge.myriadapps.com/api/")
                 .addConverterFactory(GsonConverterFactory.create());
 
-        Retrofit retrofit =  builder.build();
-        UserClient client  = retrofit.create(UserClient.class);
+        Retrofit retrofit =  builder.build();*/
+       // UserClient client  = retrofit.create(UserClient.class);
+
+        APIService apiService =  new APIService();
+        apiService.createAccount(new Callback<User>() {
 
 
 
-        Call<User> call =  client.createAccount(user);
+        //Call<User> call =  client.createAccount(user);
 
-        call.enqueue(new Callback<User>() {
+        //call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()){
@@ -104,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "Request Failed. ", Toast.LENGTH_SHORT).show();
             }
-        });
+        },user);
 
     }
 
