@@ -18,4 +18,8 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="logout">Logout</string>
+    <string name="speaker">Speaker</string>
+    <string name="speaker_name">Speaker Name</string>
+    <string name="about_speaker">About Speaker</string>
+    <string name="todo">TODO</string>
 </resources>
