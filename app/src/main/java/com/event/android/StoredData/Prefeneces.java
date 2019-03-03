@@ -18,6 +18,10 @@ public class Prefeneces {
         return true;
     }
 
+    public  static boolean ifExists(Context context){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getAll().isEmpty() ;
+    }
 
 
     public  static String getUsername(Context context){

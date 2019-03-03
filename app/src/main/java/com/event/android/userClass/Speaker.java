@@ -3,6 +3,8 @@ package com.event.android.userClass;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+//Speaker Class
+
 public class Speaker {
 
     @SerializedName("id")

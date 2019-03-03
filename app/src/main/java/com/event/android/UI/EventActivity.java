@@ -1,8 +1,9 @@
-package com.event.android;
+package com.event.android.UI;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -13,38 +14,33 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.event.android.R;
+import com.event.android.RecyclerView.RecyclerViewAdapter;
+import com.event.android.Service.APIService;
 import com.event.android.StoredData.Prefeneces;
 import com.event.android.userClass.Event;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class EventActivity extends AppCompatActivity {
+    public Toolbar toolbar;
 
-    private EditText editText2;
-    private Toolbar toolbar;
+    public RecyclerView recyclerView;
 
     private String token="";
-
-    Retrofit.Builder builder = new Retrofit.Builder()
-            .baseUrl("https://challenge.myriadapps.com/api/")
-            .addConverterFactory(GsonConverterFactory.create());
-
-    Retrofit retrofit = builder.build();
-    UserClient userClient =  retrofit.create(UserClient.class);
-
-    UserClient eventInterface =  retrofit.create(UserClient.class);
 
     ArrayList<String> id = new ArrayList<>();
     ArrayList<String>imageUrls =  new ArrayList<>();
     ArrayList<String>imageTitle = new ArrayList<>();
-    ArrayList<String>imageDate = new ArrayList<>();
+    ArrayList<String>imageStartDate = new ArrayList<>();
+    ArrayList<String>imageEndDate = new ArrayList<>();
 
 
     @Override
@@ -53,7 +49,7 @@ public class EventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
         token =  getIntent().getStringExtra("StoredToken");
         toolbar = findViewById(R.id.event_toolbar);
-
+        recyclerView =  findViewById(R.id.recyclerView);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Events");
 
@@ -62,9 +58,10 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void getEvents(final String token) {
-        Call<List<Event>> call =  eventInterface.getSecret(token);
-        call.enqueue(new Callback<List<Event>>() {
-            @Override
+
+        APIService apiService = new APIService();
+        APIService a2 = new APIService();
+        apiService.getEvents(new Callback<List<Event>>() {
             public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
                 String ofEvents = "";
                 try{
@@ -74,11 +71,12 @@ public class EventActivity extends AppCompatActivity {
                         id.add(e.getId().toString());
                         imageTitle.add(e.getTitle());
                         imageUrls.add(e.getImageUrl());
-                        imageDate.add(e.getStartDateTime());
+                        imageStartDate.add(e.getStartDateTime());
+                        imageEndDate.add(e.getEndDateTime());
                     }
                     Toast.makeText(EventActivity.this, "Events recieved", Toast.LENGTH_SHORT).show();
 
-                    initRecyclerView(id, imageTitle,imageUrls,imageDate);
+                    initRecyclerView(id, imageTitle,imageUrls,imageStartDate, imageEndDate,token);
                     //editText.setText(ofEvents);
                 }
                 catch (Exception e){
@@ -87,20 +85,23 @@ public class EventActivity extends AppCompatActivity {
                 }
             }
 
-             @Override
-             public void onFailure(Call<List<Event>> call, Throwable t) {
-                 Log.d("onFailure",t.toString());
+            @Override
+            public void onFailure(Call<List<Event>> call, Throwable t) {
+                Log.d("onFailure",t.toString());
 
-             }
-         });
-
-
-
+            }
+        },token);
     }
 
-    private void initRecyclerView(ArrayList<String> id, ArrayList<String> imageTitle, ArrayList<String> imageUrls, ArrayList<String> imageDate) {
-        RecyclerView recyclerView =  findViewById(R.id.recyclerView);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,id,imageUrls,imageTitle,imageDate);
+    private void initRecyclerView(ArrayList<String> id, ArrayList<String> imageTitle,
+                                  ArrayList<String> imageUrls, ArrayList<String> imageStartDate,
+                                  ArrayList<String> imageEndDate, String token) {
+
+        //RecyclerView recyclerView =  findViewById(R.id.recyclerView);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL));
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,id,imageUrls,imageTitle,
+                imageStartDate, imageEndDate, token);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -118,7 +119,7 @@ public class EventActivity extends AppCompatActivity {
             case R.id.option:
                 logout_User();
                 return true;
-            
+
         }
         return super.onOptionsItemSelected(logout_option);
     }
