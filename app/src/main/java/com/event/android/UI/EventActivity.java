@@ -23,15 +23,17 @@ import com.event.android.userClass.Event;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
 public class EventActivity extends AppCompatActivity {
+    public Toolbar toolbar;
 
-    private EditText editText2;
-    private Toolbar toolbar;
+    public RecyclerView recyclerView;
+
     private String token="";
 
     ArrayList<String> id = new ArrayList<>();
@@ -47,7 +49,7 @@ public class EventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
         token =  getIntent().getStringExtra("StoredToken");
         toolbar = findViewById(R.id.event_toolbar);
-
+        recyclerView =  findViewById(R.id.recyclerView);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Events");
 
@@ -95,7 +97,7 @@ public class EventActivity extends AppCompatActivity {
                                   ArrayList<String> imageUrls, ArrayList<String> imageStartDate,
                                   ArrayList<String> imageEndDate, String token) {
 
-        RecyclerView recyclerView =  findViewById(R.id.recyclerView);
+        //RecyclerView recyclerView =  findViewById(R.id.recyclerView);
         recyclerView.addItemDecoration(new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL));
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,id,imageUrls,imageTitle,
@@ -117,7 +119,7 @@ public class EventActivity extends AppCompatActivity {
             case R.id.option:
                 logout_User();
                 return true;
-            
+
         }
         return super.onOptionsItemSelected(logout_option);
     }

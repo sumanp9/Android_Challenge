@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.event.android.R;
 import com.event.android.UI.ShowEventActivity;
@@ -26,7 +25,6 @@ import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     public static final String TAG = "RecyclerViewAdapter";
@@ -108,6 +106,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View v) {
                 Intent intent =  new Intent(context, ShowEventActivity.class);
                 intent.putExtra("eventID",id.get(i));
+                intent.putExtra("eventTitle",title.get(i));
                 //intent.putExtra("Speaker List", speakerID);
                 intent.putExtra("token",token);
                 context.startActivity(intent);
