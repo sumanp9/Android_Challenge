@@ -17,7 +17,12 @@ import com.event.android.R;
 import com.event.android.UI.ShowEventActivity;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,15 +34,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> id  =  new ArrayList<>();
     private ArrayList<String>mImages =  new ArrayList<>();
     private ArrayList<String>title = new ArrayList<>();
-    private ArrayList<String>date =  new ArrayList<>();
+    private ArrayList<String>startDate =  new ArrayList<>();
+    private ArrayList<String>endDate =  new ArrayList<>();
     private Context context;
     String token ="";
 
-    public RecyclerViewAdapter(Context context, ArrayList<String> id, ArrayList<String> mImages, ArrayList<String> title, ArrayList<String> date, String token) {
+    public RecyclerViewAdapter(Context context, ArrayList<String> id, ArrayList<String> mImages,
+                               ArrayList<String> title, ArrayList<String> startDate, ArrayList<String> endDate,
+                               String token) {
         this.id = id;
         this.mImages = mImages;
         this.title = title;
-        this.date = date;
+        this.startDate = startDate;
+        this.endDate =  endDate;
         this.context = context;
         this.token  =  token;
     }
@@ -53,16 +62,44 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
+
         Log.d(TAG, "onBindVuewHolder :  called");
+        String startDateandTime = convertDate(startDate.get(i),"start");
+        String endDateandTime = convertDate(endDate.get(i),"end");
         Picasso.get()
                 .load(mImages.get(i))
                 .into(viewHolder.imageView);
         viewHolder.title.setText(title.get(i));
-        viewHolder.time.setText(date.get(i));
+        viewHolder.time.setText(startDateandTime+ " - "+endDateandTime);
 
         eventClicked(viewHolder,i);
 
     }
+
+
+    //This method converts Date from string format to required Date format
+    private String convertDate(String rawDate, String timePoint) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssZ");
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        Date result;
+        String date ="";
+        try {
+            result = df.parse(rawDate);
+            if (timePoint == "start") {
+                sdf = new SimpleDateFormat("dd/MM/yy h:mm a");
+            }
+            else{
+                sdf = new SimpleDateFormat("h:mm a");
+            }
+            sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+            date=  sdf.format(result);
+             //prints date in the format sdf
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
 
 
     public void eventClicked(ViewHolder viewHolder, final int i){

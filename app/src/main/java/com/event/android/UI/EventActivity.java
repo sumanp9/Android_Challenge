@@ -37,7 +37,8 @@ public class EventActivity extends AppCompatActivity {
     ArrayList<String> id = new ArrayList<>();
     ArrayList<String>imageUrls =  new ArrayList<>();
     ArrayList<String>imageTitle = new ArrayList<>();
-    ArrayList<String>imageDate = new ArrayList<>();
+    ArrayList<String>imageStartDate = new ArrayList<>();
+    ArrayList<String>imageEndDate = new ArrayList<>();
 
 
     @Override
@@ -68,11 +69,12 @@ public class EventActivity extends AppCompatActivity {
                         id.add(e.getId().toString());
                         imageTitle.add(e.getTitle());
                         imageUrls.add(e.getImageUrl());
-                        imageDate.add(e.getStartDateTime());
+                        imageStartDate.add(e.getStartDateTime());
+                        imageEndDate.add(e.getEndDateTime());
                     }
                     Toast.makeText(EventActivity.this, "Events recieved", Toast.LENGTH_SHORT).show();
 
-                    initRecyclerView(id, imageTitle,imageUrls,imageDate, token);
+                    initRecyclerView(id, imageTitle,imageUrls,imageStartDate, imageEndDate,token);
                     //editText.setText(ofEvents);
                 }
                 catch (Exception e){
@@ -89,11 +91,15 @@ public class EventActivity extends AppCompatActivity {
         },token);
     }
 
-    private void initRecyclerView(ArrayList<String> id, ArrayList<String> imageTitle, ArrayList<String> imageUrls, ArrayList<String> imageDate, String token) {
+    private void initRecyclerView(ArrayList<String> id, ArrayList<String> imageTitle,
+                                  ArrayList<String> imageUrls, ArrayList<String> imageStartDate,
+                                  ArrayList<String> imageEndDate, String token) {
+
         RecyclerView recyclerView =  findViewById(R.id.recyclerView);
         recyclerView.addItemDecoration(new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL));
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,id,imageUrls,imageTitle,imageDate, token);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,id,imageUrls,imageTitle,
+                imageStartDate, imageEndDate, token);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
