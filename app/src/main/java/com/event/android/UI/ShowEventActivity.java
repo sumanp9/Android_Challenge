@@ -16,10 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.event.android.R;
+import com.event.android.RecyclerView.SpeakerViewAdapter;
 import com.event.android.Service.APIService;
 import com.event.android.StoredData.Prefeneces;
 import com.event.android.userClass.Event;
 import com.event.android.userClass.Speaker;
+import com.event.android.userClass.SpeakerBio;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
@@ -150,7 +152,7 @@ public class ShowEventActivity extends AppCompatActivity {
             speakeridList.add(speaker.getId());
         }
 
-       // showSpeakers(token, event_Id, speakeridList);
+        showSpeakers(token, event_Id, speakeridList);
 
     }
 
@@ -176,7 +178,7 @@ public class ShowEventActivity extends AppCompatActivity {
         return date;
     }
 
-/*
+
     private void showSpeakers(final String token, String event_id, ArrayList<Integer> speakeridList) {
 
         for (int i = 0; i < speakeridList.size(); i++) {
@@ -196,6 +198,8 @@ public class ShowEventActivity extends AppCompatActivity {
                     arraySpeakerName.add(bio.getFirstName() + " " + bio.getLastName());
                     arraySpeakerImage.add(bio.getImageUrl());
                     arraySpeakerBio.add(bio.getBio());
+                    Toast.makeText(ShowEventActivity.this, "onResponse", Toast.LENGTH_SHORT).show();
+
                 } else {
                     Toast.makeText(ShowEventActivity.this, "Speaker Deatail Retreval unsuccesful", Toast.LENGTH_SHORT).show();
                 }
@@ -207,7 +211,7 @@ public class ShowEventActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SpeakerBio> call, Throwable t) {
-                //Toast.makeText(ShowEventActivity.this, "Retrival Failed : On failure", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ShowEventActivity.this, "Retrival Failed : On failure", Toast.LENGTH_SHORT).show();
             }
         }, token, speakerId);
 
@@ -220,5 +224,6 @@ public class ShowEventActivity extends AppCompatActivity {
         SpeakerViewAdapter adapter = new SpeakerViewAdapter(arraySpeakerName,arraySpeakerBio, arraySpeakerImage, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }*/
+        Toast.makeText(this, "initSpeakerView", Toast.LENGTH_SHORT).show();
+    }
 }

@@ -1,6 +1,7 @@
 package com.event.android.Service;
 
 import com.event.android.userClass.Event;
+import com.event.android.userClass.SpeakerBio;
 import com.event.android.userClass.User;
 
 import java.util.List;
@@ -37,11 +38,11 @@ public class APIService {
     public void getEventList(Call<List<Event>> call, String token){
         eventInterface.getSecret(token).enqueue((Callback<List<Event>>) call);
     }
-
+*/
     public void getSpeakers(Callback<SpeakerBio> call, String token, String id){
         eventInterface.getSpeakers(token, id).enqueue((Callback<SpeakerBio>) call);
 
     }
-*/
+
 
 }

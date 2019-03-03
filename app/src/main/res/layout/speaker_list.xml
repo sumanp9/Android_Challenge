@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/speakerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+
+        android:id="@+id/speaker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/speaker"
+        android:textColor="@color/silver"
+        android:textSize="14sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginLeft="20sp"/>
+
+    <TextView
+        android:id="@+id/speaker_name"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/speaker"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="19dp"
+        android:text="@string/speaker_name"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/aboutSpeaker"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/speaker_name"
+        android:text="@string/about_speaker"
+        android:textSize="14sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20sp"/>
+
+    <ImageView
+        android:contentDescription="@string/todo"
+        android:id="@+id/speaker_pic"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/speaker_name"
+        android:layout_toEndOf="@+id/speaker_name"
+        />
+
+</RelativeLayout>
