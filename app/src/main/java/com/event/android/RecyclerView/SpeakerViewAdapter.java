@@ -38,7 +38,6 @@ public class SpeakerViewAdapter extends RecyclerView.Adapter<SpeakerViewAdapter.
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.speaker_list,parent,false);
         ViewHolder viewHolder =  new ViewHolder(view);
-        Toast.makeText(context, "In create viewHolder", Toast.LENGTH_SHORT).show();
         return viewHolder;
     }
 
@@ -70,19 +69,9 @@ public class SpeakerViewAdapter extends RecyclerView.Adapter<SpeakerViewAdapter.
         ImageView speakerImage;
         @BindView(R.id.speakerLayout)
         RelativeLayout layout;
-        /*
-       ImageView speakerImage;
-       TextView speakerBio,speakerName;
-        RelativeLayout layout;*/
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
-/*
-                    layout =  itemView.findViewById(R.id.speakerLayout);
-            speakerImage =  itemView.findViewById(R.id.speaker_pic);
-            speakerName = itemView.findViewById(R.id.speaker_name);
-            speakerBio = itemView.findViewById(R.id.aboutSpeaker);*/
 
 
 

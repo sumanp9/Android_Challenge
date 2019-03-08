@@ -188,18 +188,14 @@ public class ShowEventActivity extends AppCompatActivity {
 
     private void getEventSpeakers(final String speakerId, String token) {
         APIService apiService = new APIService();
-        Toast.makeText(this, "Speaker Id is " + token, Toast.LENGTH_SHORT).show();
         apiService.getSpeakers(new Callback<SpeakerBio>() {
             @Override
             public void onResponse(Call<SpeakerBio> call, Response<SpeakerBio> response) {
-                Toast.makeText(ShowEventActivity.this, "In Speaker response", Toast.LENGTH_SHORT).show();
                 if (response.isSuccessful()) {
                     SpeakerBio bio = (SpeakerBio) response.body();
                     arraySpeakerName.add(bio.getFirstName() + " " + bio.getLastName());
                     arraySpeakerImage.add(bio.getImageUrl());
                     arraySpeakerBio.add(bio.getBio());
-                    Toast.makeText(ShowEventActivity.this, "onResponse", Toast.LENGTH_SHORT).show();
-
                 } else {
                     Toast.makeText(ShowEventActivity.this, "Speaker Deatail Retreval unsuccesful", Toast.LENGTH_SHORT).show();
                 }

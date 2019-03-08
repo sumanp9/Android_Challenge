@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText txtUsername;
     @BindView(R.id.txtPassword)
     EditText txtPassword;
-    private Button btnLogin;
+
+    public Button btnLogin;
     private String token;
 
     @Override
@@ -44,8 +46,6 @@ public class LoginActivity extends AppCompatActivity {
 
         if (!Prefeneces.ifExists(this)) {
             checkUser();
-        } else {
-            Toast.makeText(this, "File " + Prefeneces.ifExists(this), Toast.LENGTH_SHORT).show();
         }
 
         btnLoginPressed();
@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                     User user = new User(username, pass);
                     postUser(user, username, pass);
                 } else {
+
                     Snackbar.make(v, "Please fill all the fields", Snackbar.LENGTH_LONG).show();
 
                 }
@@ -94,9 +95,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(LoginActivity.this, "Success " + response.body().getToken(),
-                            Toast.LENGTH_SHORT).show();
-
                     token = response.body().getToken();
                     Prefeneces.saveUserData(username, pass, token, LoginActivity.this);
                     openEvents(username, pass, token);
