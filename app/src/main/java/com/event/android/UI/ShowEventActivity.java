@@ -220,6 +220,5 @@ public class ShowEventActivity extends AppCompatActivity {
         SpeakerViewAdapter adapter = new SpeakerViewAdapter(arraySpeakerName,arraySpeakerBio, arraySpeakerImage, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Toast.makeText(this, "initSpeakerView", Toast.LENGTH_SHORT).show();
     }
 }
