@@ -7,4 +7,5 @@
     <color name="EventBlue">#035686</color>
     <color name= "EventDarkBlue">#03446A</color>
     <color name="silver">#C0C0C0</color>
+    <color name="errorRed">#FF3D19</color>
 </resources>

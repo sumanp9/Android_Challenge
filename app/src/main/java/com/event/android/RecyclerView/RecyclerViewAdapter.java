@@ -107,7 +107,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Intent intent =  new Intent(context, ShowEventActivity.class);
                 intent.putExtra("eventID",id.get(i));
                 intent.putExtra("eventTitle",title.get(i));
-                //intent.putExtra("Speaker List", speakerID);
                 intent.putExtra("token",token);
                 context.startActivity(intent);
             }
@@ -133,12 +132,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            /*
-            parentLayout =itemView.findViewById(R.id.parentLayout);
-            imageView =  itemView.findViewById(R.id.imageView);
-            title = itemView.findViewById(R.id.title);
-            time = itemView.findViewById(R.id.time);
-        }*/
+
         }
 
     }}
